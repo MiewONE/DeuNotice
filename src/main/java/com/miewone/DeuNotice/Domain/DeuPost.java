@@ -18,13 +18,15 @@ public class DeuPost {
     private String title;
     @Column
     private String date;
-
+    @Column
+    private String url;
     @Builder
-    public DeuPost(String no,String title,String date)
+    public DeuPost(String no,String title,String date,String url)
     {
         this.no = no;
         this.title =title;
         this.date = date;
+        this.url = url;
     }
 
 }

@@ -23,7 +23,7 @@ class DeuNoticeApplicationTests {
     void crollingTest()
     {
         String url ="http://localhost:"+port+"/api/info";
-        ResponseEntity<String> resEntity =testRestTemplate.getForEntity(url,String.class,String.class);
+        ResponseEntity<String> resEntity =testRestTemplate.getForEntity(url,String.class);
     }
     @Test
     void contextLoads() {
