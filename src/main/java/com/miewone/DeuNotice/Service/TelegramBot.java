@@ -15,7 +15,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class TelegramBot extends TelegramLongPollingBot {
     private final String BOT_NAME = "AlterDeuNotice_bot"; //Bot Name
     private final String AUTH_KEY = "1591890100:AAFak6qektt9FSZP87H47Owt2ssN_2w920w"; //Bot Auth-Key
-    private Long CHAT_ID = 1223486878L; //Chat ID
+    private Long CHAT_ID = -498852328L;//1223486878L; //Chat ID
     public String Date;
     // 지윤이 1591879752
 
