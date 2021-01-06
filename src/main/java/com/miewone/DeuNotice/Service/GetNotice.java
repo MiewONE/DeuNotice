@@ -27,36 +27,38 @@ import java.util.Map;
 public class GetNotice{
     private String url="";
     private String nowDate;
+    private String comDate;
     private final TelegramBot telegramBot;
     @Scheduled(fixedDelay = 1 * 60 * 1000,initialDelay = 3000)
     public void Haksk_Notice()
     {
+        //https://www.deu.ac.kr/www/board/3
         //http://socialwelfare.deu.ac.kr/sub0201
+        this.url ="https://www.deu.ac.kr/www/board/3";
+        get("https://www.deu.ac.kr/www","yyyy.MM.dd","th",".text-left","td:nth-child(4)","학교 공지","https://www.deu.ac.kr/");
         this.url = "http://socialwelfare.deu.ac.kr/sub0201";
-        getNotice("학사");
+        get("http://socialwelfare.deu.ac.kr/index.php","yyyy.M.d",".no",".title",".time","사회복지학과 학사","http://socialwelfare.deu.ac.kr");
         this.url= "http://socialwelfare.deu.ac.kr/sub0301";
-        getNotice("실습");
-    }
-    public void Practice_Notice()
-    {
-        getNotice("실습");
+        get("http://socialwelfare.deu.ac.kr/index.php","yyyy.M.d",".no",".title",".time","사회복지학과 학사","http://socialwelfare.deu.ac.kr");
+        this.url = "https://se.deu.ac.kr/bbs/board.php?bo_table=notice";
+        get("https://se.deu.ac.kr/","M-d",".sound_only",".td_subject",".td_datetime","컴퓨터 소프트웨어 공학과","");
     }
 
-    private List<DeuPost> getNotice(String title)
+
+    private void get(String baseUrl,String dateFommat,String noticeClass,String titleClass,String dateClass,String title,String hostUrl)
     {
         if(nowDate==null)
         {
             LocalDate current = LocalDate.now();
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy.M.d");
+            DateTimeFormatter format = DateTimeFormatter.ofPattern(dateFommat);
             nowDate = current.format(format);
         }
 
         List<DeuPost> posts = new ArrayList<>();
         try{
-            Document doc = Jsoup.parse(new URL(url).openStream(), "UTF-8","http://socialwelfare.deu.ac.kr/index.php");
+            Document doc = Jsoup.parse(new URL(url).openStream(), "UTF-8",baseUrl);
 
-            Elements Notices = doc.select(".notice");
-            Elements elem = doc.select(".title");
+
             Elements postelems = doc.select("tbody tr");
 
             int i=0;
@@ -65,39 +67,24 @@ public class GetNotice{
             {
                 String[] tess = post.select("a").outerHtml().split("\"");
                 posts.add(new DeuPost(
-                        post.select(".no").text()
-                        ,post.select(".title").text()
-                        ,post.select(".time").text()
+                        post.select(noticeClass).text()
+                        ,post.select(titleClass).text()
+                        ,post.select(dateClass).text()
                         ,tess[1]
                 ));
-//                telegramBot.sendMessage(title+" 게시판\nNo : "+posts.get(i).getNo()+"\n제목 : "+posts.get(i).getTitle()+"\n날짜 : "+posts.get(i).getDate()+"\n링크 : "+"http://socialwelfare.deu.ac.kr/"+tess[1]);
-                if(post.select(".time").text().equals(nowDate))
+                telegramBot.sendMessage(title+" 게시판\nNo : "+posts.get(i).getNo()+"\n제목 : "+posts.get(i).getTitle()+"\n날짜 : "+posts.get(i).getDate()+"\n링크 : "+"http://socialwelfare.deu.ac.kr/"+tess[1]);
+                if(post.select(dateClass).text().equals(nowDate))
                 {
-                    telegramBot.sendMessage(title+" 게시판\nNo : "+posts.get(i).getNo()+"\n제목 : "+posts.get(i).getTitle()+"\n날짜 : "+posts.get(i).getDate()+"\n링크 : "+"http://socialwelfare.deu.ac.kr/"+tess[1]);
+                    telegramBot.sendMessage(title+" 게시판\nNo : "+posts.get(i).getNo()+"\n제목 : "+posts.get(i).getTitle()+"\n날짜 : "+posts.get(i).getDate()+"\n링크 : "+hostUrl+tess[1]);
                 }
 
                 i++;
             }
-            ;
 
-            List<String> noticeList =  getElement(elem);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return posts;
-    }
-    private List<String> getElement(Elements elements)
-    {
-        List<String> returnsList = new ArrayList<String>();
-        for(Element el : elements)
-        {
-            if(el.text().equals("제목"))
-            {
-                continue;
-            }
-            returnsList.add(el.text());
-        }
-        return returnsList;
     }
 }
