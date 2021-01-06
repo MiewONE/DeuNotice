@@ -29,7 +29,7 @@ public class GetNotice{
     private String nowDate;
     private String comDate;
     private final TelegramBot telegramBot;
-    @Scheduled(fixedDelay = 1 * 60 * 1000,initialDelay = 3000)
+    @Scheduled(cron = "0 0 18 * * ?")
     public void Haksk_Notice()
     {
         //https://www.deu.ac.kr/www/board/3
