@@ -1,7 +1,6 @@
 package com.miewone.DeuNotice.Service;
 
-import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -14,18 +13,13 @@ import java.util.List;
 
 @Service
 public class TelegramBot extends TelegramLongPollingBot {
+
     private final String BOT_NAME = "AlterDeuNotice_bot"; //Bot Name
     private final String AUTH_KEY = "1591890100:AAFak6qektt9FSZP87H47Owt2ssN_2w920w"; //Bot Auth-Key
     private List<Long> CHAT_ID = new ArrayList<>();// = 1223486878L; //Chat ID-498852328L;//
     public String Date;
 
-    // 지윤이 1591879752
-    public TelegramBot()
-    {
-//        CHAT_ID.add(1223486878L);//나
-        CHAT_ID.add(-498852328L);//단톡
-        CHAT_ID.add(1574989305L);//현주
-    }
+
     public void addIds(Long id)
     {
         this.CHAT_ID.add(id);
@@ -36,7 +30,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
     @Override
     public void onUpdateReceived(Update update) {
-
+        sendMessage(1223486878L,update.getMessage().getChatId()+update.getMessage().getText());
 //        sendMessage("chatId"+this.CHAT_ID+this.Date);
     }
 

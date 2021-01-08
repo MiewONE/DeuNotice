@@ -1,5 +1,6 @@
 package com.miewone.DeuNotice;
 
+import com.miewone.DeuNotice.Dto.DeuPostDto;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,15 @@ class DeuNoticeApplicationTests {
     @Test
     void crollingTest()
     {
+        DeuPostDto dto = DeuPostDto.builder()
+                .id(1223486878L)
+                .department("동의대공지")
+                .groupYN(true)
+                .name("박원균")
+                .build();
         String url ="http://localhost:"+port+"/api/info";
-        ResponseEntity<String> resEntity =testRestTemplate.getForEntity(url,String.class);
+
+        ResponseEntity<String> resEntity =testRestTemplate.postForEntity(url,dto,String.class);
     }
     @Test
     void contextLoads() {

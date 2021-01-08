@@ -5,29 +5,70 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 @Data
 @NoArgsConstructor
 public class DeuPostDto {
-    private String no;
-    private String title;
-    private String date;
+
+    private Long id;
+    private Long chatId;
     private String url;
+    
+    private String baseurl;
+    private String department;
+    private String dateFommat;
+    
+    private String docElement;
+    
+    private String noticeClass;
+    
+    private String titleClass;
+    
+    private String dateClass;
+    
+    private String title;
+    
+    private String hostUrl;
+    private String name;
+    private Boolean groupYN;
     @Builder
-    public DeuPostDto(String no,String title,String date,String url)
+    public DeuPostDto(Long id,Long chatId,String url,String baseurl,String department,String dateFommat,String docElement,String noticeClass,String titleClass,String dateClass,String title,String hostUrl,String name,Boolean groupYN)
     {
-        this.no =no;
+        this.id = id;
+        this.chatId =chatId;
+        this.url =url;
+        this.baseurl = baseurl;
+        this.department = department;
+        this.dateFommat =dateFommat;
+        this.docElement = docElement;
+        this.noticeClass = noticeClass;
+        this.titleClass= titleClass;
+        this.dateClass = dateClass;
         this.title = title;
-        this.date = date;
-        this.url = url;
+        this.hostUrl = hostUrl;
+        this.name = name;
+        this.groupYN = groupYN;
     }
 
     public DeuPost toEntity()
     {
         return DeuPost.builder()
-                .no(no)
-                .title(title)
-                .date(date)
+                .id(id)
+                .chatId(chatId)
                 .url(url)
+                .baseurl(baseurl)
+                .department(department)
+                .dateFommat(dateFommat)
+                .docElement(docElement)
+                .noticeClass(noticeClass)
+                .titleClass(titleClass)
+                .dateClass(dateClass)
+                .title(title)
+                .name(name)
+                .hostUrl(hostUrl)
+                .groupYN(groupYN)
                 .build();
     }
 

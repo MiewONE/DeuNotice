@@ -1,0 +1,46 @@
+<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!--index.js 추가-->
+<script>
+    $('.ggs').on('click',function (){
+        var gg =$('.gg').val();
+        $('#dropdownMenu1').text( $('.gg').val());
+    });
+    $('#save').on('click',function(){
+        var dd;
+        if($('#jb-checkbox').val() == "on")
+        {
+            dd = 'true';
+        }else
+        {
+            dd='false';
+        }
+        var data = {
+            chatId:parseFloat($('#chatid').val()),
+            department:$('#dropdownMenu1').text(),
+            groupYN:dd,
+            name:$('#name').val()
+        };
+        $.ajax({
+            type:'POST',
+            url:'/api/info',
+            dataType:'json',
+            contentType:'application/json; charset=utf-8',
+            data:JSON.stringify(data)
+        }).done(function(s){
+            alert("성공")
+        }).fail(function(e){
+            alert("실패")
+        })
+    });
+    function change(e)
+    {
+        $('#dropdownMenu1').text( e.innerText);
+    }
+</script>
+</body>
+</html>

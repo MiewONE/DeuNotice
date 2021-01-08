@@ -1,21 +1,23 @@
 package com.miewone.DeuNotice.Contorller;
 
+import com.miewone.DeuNotice.Dto.DeuPostDto;
 import com.miewone.DeuNotice.Service.GetNotice;
+import com.miewone.DeuNotice.Service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
 public class restapi {
-    private final GetNotice getNotice;
+    private final PostService postService;
 
-    @GetMapping("/api/info")
-    public String noticeInfo()
+    @PostMapping("/api/info")
+    public String noticeInfo(@RequestBody DeuPostDto dto)
     {
-        getNotice.setUrl("http://socialwelfare.deu.ac.kr/sub0201");
-        getNotice.Haksk_Notice();
+        postService.save(dto);
         return "";
     }
 }

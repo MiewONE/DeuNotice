@@ -1,0 +1,30 @@
+{{>layout/header}}
+<div class="container">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">ChatID</span>
+        <input type="text" class="form-control" id="chatid" placeholder="CHATID" aria-describedby="basic-addon1" size="10%">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">이름</span>
+        <input type="text" class="form-control" id="name" placeholder="이름" aria-describedby="basic-addon1" size="10%">
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            사이트
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            {{#notices}}
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="change(this)">{{department}}</a></li>
+            {{/notices}}
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"  class="ggs"> <input type="text" name=""class="gg" id=""></a></li>
+        </ul>
+    </div>
+    <div class="custom-control custom-checkbox" id="flexs">
+        <input type="checkbox" id="jb-checkbox" class="custom-control-input">
+        <label class="custom-control-label" for="jb-checkbox">Group</label>
+    </div>
+    <button class="btn btn-default" id="save">저장하기</button>
+</div>
+{{>layout/footer}}
