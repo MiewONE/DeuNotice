@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface DeuPostRepository extends JpaRepository<DeuPost,Long> {
-    @Query("select I.id from DeuPost I")
+    @Query("select I.chatId from DeuPost I")
     List<Long> findbyAllId();
 
     @Query("select I.department from DeuPost I")
