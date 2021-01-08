@@ -19,7 +19,7 @@ import java.util.TimeZone;
 @RequiredArgsConstructor
 public class StartUpApplicationListener {
     private final TelegramBot telegramMessageBot;
-
+    private final PostService postService;
 
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -32,7 +32,7 @@ public class StartUpApplicationListener {
                 + "\n[Up-Time] : " + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
 
         //특정 프로필일 때만 전송 처리
-        for(Long id : telegramMessageBot.getIds())
+        for(Long id : postService.getIds())
         {
             telegramMessageBot.sendMessage(id,startMsg);
         }
@@ -49,7 +49,7 @@ public class StartUpApplicationListener {
                 + "=== SERVER DOWN === \n\n"
                 + "\n[Down-Time] : " + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
 
-        for(Long id : telegramMessageBot.getIds())
+        for(Long id : postService.getIds())
         {
             telegramMessageBot.sendMessage(id,startMsg);
         }
