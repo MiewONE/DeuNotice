@@ -51,7 +51,7 @@ public class GetNotice{
         this.url = "https://se.deu.ac.kr/bbs/board.php?bo_table=notice";
         get(ids.get(0),"https://se.deu.ac.kr/","M-d","tbody tr",".sound_only",".td_subject",".td_datetime","컴퓨터 소프트웨어 공학과","");
         this.url="http://english.deu.ac.kr/notice";
-        get(ids.get(0),"http://english.deu.ac.kr/","yyyy-MM-dd",".boardList tbody tr",".notice .notice",".title",".date","영어 영문학과 공지","http://english.deu.ac.kr/");
+        get(ids.get(1),"http://english.deu.ac.kr/","yyyy-MM-dd",".boardList tbody tr",".notice .notice",".title",".date","영어 영문학과 공지","http://english.deu.ac.kr");
     }
 
 
