@@ -15,14 +15,14 @@ public class DeuNoticeApplication {
     public static void main(String[] args) {
 
         ApiContextInitializer.init();
-//
-//        //2
-//        TelegramBotsApi botsApi = new TelegramBotsApi();
-//        try {
-//            botsApi.registerBot(new TelegramBot());
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
+        TelegramBotsApi botsApi = new TelegramBotsApi();
+
+        // Register our bot
+        try {
+            botsApi.registerBot(new TelegramBot());
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
         SpringApplication.run(DeuNoticeApplication.class, args);
     }
 
