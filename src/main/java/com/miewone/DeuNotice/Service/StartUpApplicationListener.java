@@ -32,10 +32,9 @@ public class StartUpApplicationListener {
                 + "\n[Up-Time] : " + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
 
         //특정 프로필일 때만 전송 처리
-        for(Long id : postService.getIds())
-        {
-            telegramMessageBot.sendMessage(id,startMsg);
-        }
+
+            telegramMessageBot.sendMessage(1223486878L,startMsg);
+
 
     }
 
@@ -49,10 +48,8 @@ public class StartUpApplicationListener {
                 + "=== SERVER DOWN === \n\n"
                 + "\n[Down-Time] : " + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
 
-        for(Long id : postService.getIds())
-        {
-            telegramMessageBot.sendMessage(id,startMsg);
-        }
+            telegramMessageBot.sendMessage(1223486878L,startMsg);
+
         telegramMessageBot.onClosing();
     }
 }
