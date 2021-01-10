@@ -40,7 +40,7 @@ public class PostService {
                 deuPostRepository.save(setdto(dto,"http://chi.deu.ac.kr/notice","http://chi.deu.ac.kr/","yyyy-MM-dd",".boardList tbody tr",".notice .notice",".title",".date","중국어학과 공지","http://chi.deu.ac.kr","a").toEntity());
                 break;
             case "뽐뿌":
-                deuPostRepository.save(setdto(dto,"http://chi.deu.ac.kr/notice","http://www.ppomppu.co.kr/index.php","HH:mm:ss","#revolution_main_table tbody tr[class$=\" \"]","td:nth-child(1)","list_vspace table tbody tr td:nth-child(2)","td:nth-last-child(3)","중국어학과 공지","http://www.ppomppu.co.kr/zboard/","a[href^=\"view\"]").toEntity());
+                deuPostRepository.save(setdto(dto,"http://www.ppomppu.co.kr/zboard/zboard.php?id=ppomppu","http://www.ppomppu.co.kr/index.php","HH:mm:ss","#revolution_main_table tbody tr[class$=\" \"]","td:nth-child(1)","list_vspace table tbody tr td:nth-child(2)","td:nth-last-child(3)","중국어학과 공지","http://www.ppomppu.co.kr/zboard/","a[href^=\"view\"]").toEntity());
                 break;
 
             default:
