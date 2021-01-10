@@ -11,4 +11,7 @@ public interface DeuPostRepository extends JpaRepository<DeuPost,Long> {
 
     @Query("select I.department from DeuPost I")
     List<String> findAllByDepartment();
+
+    @Query("select distinct I.chatId from DeuPost I")
+    List<Long> findbyAllIdDistinct();
 }

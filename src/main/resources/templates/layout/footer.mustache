@@ -6,6 +6,23 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!--index.js 추가-->
 <script>
+    var s = true;
+    $(document).ready(function()
+    {
+        $('.detailInput').hide();
+    });
+    $("#hides").on('click',function(){
+        if(s)
+        {
+            $('.detailInput').show(1000);
+            s=false;
+        }
+        else{
+            $('.detailInput').hide(1000);
+            s=true;
+        }
+
+    })
     $('.ggs').on('click',function (){
         var gg =$('.gg').val();
         $('#dropdownMenu1').text( $('.gg').val());
@@ -23,7 +40,16 @@
             chatId:parseFloat($('#chatid').val()),
             department:$('#dropdownMenu1').text(),
             groupYN:dd,
-            name:$('#name').val()
+            name:$('#name').val(),
+            url:$('#url').val(),
+            title:$('#title').val(),
+            baseurl:$('#BaseUrl').val(),
+            dateFommat:$('#dateFommat').val(),
+            docElement:$('#docElement').val(),
+            noticeClass:$('#noticeClass').val(),
+            titleClass:$('#titleClass').val(),
+            dateClass:$('#dateClass').val(),
+            hostUrl:$('#hostUrl').val()
         };
         $.ajax({
             type:'POST',

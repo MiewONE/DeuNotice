@@ -32,7 +32,10 @@ public class StartUpApplicationListener {
                 + "\n[Up-Time] : " + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
 
         //특정 프로필일 때만 전송 처리
-
+            for(Long id : postService.getIdsDistinct())
+            {
+                telegramMessageBot.addIds(id);
+            }
             telegramMessageBot.sendMessage(1223486878L,startMsg);
 
 

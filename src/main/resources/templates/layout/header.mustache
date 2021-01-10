@@ -10,13 +10,37 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
         }
-        .container *
+        .container{
+            flex-direction: column;
+        }
+        .defaultInput{
+            display:flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        .defaultInput *
         {
             margin-right: 1%;
         }
+        .input-group{
+            margin: 2%;
+        }
+        .detailInput {
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        }
         #flexs *{
             margin-right: 10%;
+        }
+        .detailInput{
+            margin-top: 5%;
+        }
+        #hides{
+            display:flex;
+
         }
 
     </style>

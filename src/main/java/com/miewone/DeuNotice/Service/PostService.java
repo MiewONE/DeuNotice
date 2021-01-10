@@ -22,24 +22,30 @@ public class PostService {
         switch (dto.getDepartment())
         {
             case "동의대공지":
-                deuPostRepository.save(setdto(dto,"https://www.deu.ac.kr/www/board/3","https://www.deu.ac.kr/www","yyyy.MM.dd","tbody tr","th",".text-left","td:nth-child(4)","학교 공지","https://www.deu.ac.kr/").toEntity());
+                deuPostRepository.save(setdto(dto,"https://www.deu.ac.kr/www/board/3","https://www.deu.ac.kr/www","yyyy.MM.dd","tbody tr","th",".text-left","td:nth-child(4)","학교 공지","https://www.deu.ac.kr/","a").toEntity());
                 break;
             case "동의대사복학사":
-                deuPostRepository.save(setdto(dto,"http://socialwelfare.deu.ac.kr/sub0201","http://socialwelfare.deu.ac.kr/index.php","yyyy.M.d","tbody tr",".no",".title",".time","사회복지학과 학사","http://socialwelfare.deu.ac.kr").toEntity());
+                deuPostRepository.save(setdto(dto,"http://socialwelfare.deu.ac.kr/sub0201","http://socialwelfare.deu.ac.kr/index.php","yyyy.M.d","tbody tr",".no",".title",".time","사회복지학과 학사","http://socialwelfare.deu.ac.kr","a").toEntity());
                 break;
             case "동의대사복실습":
-                deuPostRepository.save(setdto(dto,"http://socialwelfare.deu.ac.kr/sub0301","http://socialwelfare.deu.ac.kr/index.php","yyyy.M.d","tbody tr",".no",".title",".time","사회복지학과 실습","http://socialwelfare.deu.ac.kr").toEntity());
+                deuPostRepository.save(setdto(dto,"http://socialwelfare.deu.ac.kr/sub0301","http://socialwelfare.deu.ac.kr/index.php","yyyy.M.d","tbody tr",".no",".title",".time","사회복지학과 실습","http://socialwelfare.deu.ac.kr","a").toEntity());
                 break;
             case "동의대컴소공":
-                deuPostRepository.save(setdto(dto,"https://se.deu.ac.kr/bbs/board.php?bo_table=notice","https://se.deu.ac.kr/","M-d","tbody tr",".sound_only",".td_subject",".td_datetime","컴퓨터 소프트웨어 공학과","").toEntity());
+                deuPostRepository.save(setdto(dto,"https://se.deu.ac.kr/bbs/board.php?bo_table=notice","https://se.deu.ac.kr/","M-d","tbody tr",".sound_only",".td_subject",".td_datetime","컴퓨터 소프트웨어 공학과","","a").toEntity());
                 break;
             case "동의대영어영문":
-                deuPostRepository.save(setdto(dto,"http://english.deu.ac.kr/notice","http://english.deu.ac.kr/","yyyy-MM-dd",".boardList tbody tr",".notice .notice",".title",".date","영어 영문학과 공지","http://english.deu.ac.kr").toEntity());
+                deuPostRepository.save(setdto(dto,"http://english.deu.ac.kr/notice","http://english.deu.ac.kr/","yyyy-MM-dd",".boardList tbody tr",".notice .notice",".title",".date","영어 영문학과 공지","http://english.deu.ac.kr","a").toEntity());
                 break;
             case "동의대중국어":
-                deuPostRepository.save(setdto(dto,"http://chi.deu.ac.kr/notice","http://chi.deu.ac.kr/","yyyy-MM-dd",".boardList tbody tr",".notice .notice",".title",".date","중국어학과 공지","http://chi.deu.ac.kr").toEntity());
+                deuPostRepository.save(setdto(dto,"http://chi.deu.ac.kr/notice","http://chi.deu.ac.kr/","yyyy-MM-dd",".boardList tbody tr",".notice .notice",".title",".date","중국어학과 공지","http://chi.deu.ac.kr","a").toEntity());
                 break;
+            case "뽐뿌":
+                deuPostRepository.save(setdto(dto,"http://chi.deu.ac.kr/notice","http://www.ppomppu.co.kr/index.php","HH:mm:ss","#revolution_main_table tbody tr[class$=\" \"]","td:nth-child(1)","list_vspace table tbody tr td:nth-child(2)","td:nth-last-child(3)","중국어학과 공지","http://www.ppomppu.co.kr/zboard/","a[href^=\"view\"]").toEntity());
+                break;
+
             default:
+
+                deuPostRepository.save(dto.toEntity());
                 break;
         }
     }
@@ -52,12 +58,16 @@ public class PostService {
     {
         return deuPostRepository.findbyAllId();
     }
+    public List<Long> getIdsDistinct()
+    {
+        return deuPostRepository.findbyAllIdDistinct();
+    }
     public List<String> getDepartment()
     {
         return deuPostRepository.findAllByDepartment();
     }
 
-    private DeuPostDto setdto(DeuPostDto dto,String url,String baseurl,String datefommat,String docElement,String noticeClass,String titleClass,String dateClass,String title,String hostUrl)
+    private DeuPostDto setdto(DeuPostDto dto,String url,String baseurl,String datefommat,String docElement,String noticeClass,String titleClass,String dateClass,String title,String hostUrl,String linkClass)
     {
         dto.setUrl(url);
         dto.setBaseurl(baseurl);
@@ -68,6 +78,7 @@ public class PostService {
         dto.setDateClass(dateClass);
         dto.setTitle(title);
         dto.setHostUrl(hostUrl);
+        dto.setLinkClass(linkClass);
         return dto;
     }
 }

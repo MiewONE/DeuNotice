@@ -39,8 +39,10 @@ public class DeuPost {
     private String name;
     @Column(nullable = false)
     private Boolean groupYN;
+    @Column(nullable = false)
+    private String linkClass;
     @Builder
-    public DeuPost(Long id,Long chatId,String url,String baseurl,String department,String dateFommat,String docElement,String noticeClass,String titleClass,String dateClass,String title,String hostUrl,String name,Boolean groupYN)
+    public DeuPost(Long id,Long chatId,String url,String baseurl,String department,String dateFommat,String docElement,String noticeClass,String titleClass,String dateClass,String title,String hostUrl,String name,Boolean groupYN,String linkClass)
     {
         this.id = id;
         this.chatId = chatId;
@@ -56,6 +58,7 @@ public class DeuPost {
         this.hostUrl = hostUrl;
         this.name = name;
         this.groupYN = groupYN;
+        this.linkClass = linkClass;
     }
 //    @Id
 //    private String id;

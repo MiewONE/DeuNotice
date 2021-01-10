@@ -29,12 +29,12 @@ public class DeuPostDto {
     private String dateClass;
     
     private String title;
-    
+    private String linkClass;
     private String hostUrl;
     private String name;
     private Boolean groupYN;
     @Builder
-    public DeuPostDto(Long id,Long chatId,String url,String baseurl,String department,String dateFommat,String docElement,String noticeClass,String titleClass,String dateClass,String title,String hostUrl,String name,Boolean groupYN)
+    public DeuPostDto(Long id,Long chatId,String url,String baseurl,String department,String dateFommat,String docElement,String noticeClass,String titleClass,String dateClass,String title,String hostUrl,String name,Boolean groupYN,String linkClass)
     {
         this.id = id;
         this.chatId =chatId;
@@ -50,6 +50,7 @@ public class DeuPostDto {
         this.hostUrl = hostUrl;
         this.name = name;
         this.groupYN = groupYN;
+        this.linkClass =linkClass;
     }
 
     public DeuPost toEntity()
@@ -69,6 +70,7 @@ public class DeuPostDto {
                 .name(name)
                 .hostUrl(hostUrl)
                 .groupYN(groupYN)
+                .linkClass(linkClass)
                 .build();
     }
 
