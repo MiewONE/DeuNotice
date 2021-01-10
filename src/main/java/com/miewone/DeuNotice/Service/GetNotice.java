@@ -35,7 +35,7 @@ public class GetNotice{
     private final TelegramBot telegramBot;
     private final PostService service;
 
-    @Scheduled(fixedDelay=60 *1000)
+    @Scheduled(fixedDelay=5 *1000)
     public void ppomPpu_notice()
     {
         for(DeuPost member : service.getMembers())
@@ -167,7 +167,7 @@ public class GetNotice{
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }

@@ -30,14 +30,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
     @Override
     public void onUpdateReceived(Update update) {
-        if(update.getMessage().getChatId()==1223486878L)//공지
-        {
-            for(Long ids :CHAT_ID)
-            {
-                sendMessage(1223486878L,update.getMessage().getText());
-            }
-        }
-
+        sendMessage(1223486878L,update.getMessage().getChatId()+update.getMessage().getText());
 //        sendMessage("chatId"+this.CHAT_ID+this.Date);
     }
 
