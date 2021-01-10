@@ -157,7 +157,8 @@ public class GetNotice{
                         ,tess[1]
                 ));
 //                telegramBot.sendMessage(id,title+" 게시판\nNo : "+posts.get(i).getNo()+"\n제목 : "+posts.get(i).getTitle()+"\n날짜 : "+posts.get(i).getDate()+"\n링크 : "+"http://socialwelfare.deu.ac.kr/"+tess[1]);
-                if(post.select(dateClass).text().contains(timeNow[0])&&post.select(dateClass).text().contains(timeNow[1]))
+                String[] postTime = post.select(dateClass).text().split(":");
+                if(postTime[0].equals(timeNow[0])&&postTime[1].equals(timeNow[1]))
                 {
                     telegramBot.sendMessage(id,title+" 게시판\nNo : "+posts.get(i).getNo()+"\n제목 : "+posts.get(i).getTitle()+"\n날짜 : "+posts.get(i).getDate()+"\n링크 : "+hostUrl+tess[1]);
                 }
