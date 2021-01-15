@@ -35,14 +35,21 @@ public class GetNotice{
     private final TelegramBot telegramBot;
     private final PostService service;
 
-    @Scheduled(fixedDelay=60 *1000)
+    @Scheduled(fixedDelay=5 *1000)
     public void ppomPpu_notice()
     {
         for(DeuPost member : service.getMembers())
         {
             if(member.getDepartment().equals("뽐뿌"))
             {
-                get_Ppom(member.getChatId(), member.getUrl(), member.getBaseurl(),member.getDateFommat(),member.getDocElement(),member.getNoticeClass(),member.getTitleClass(),member.getDateClass(),member.getTitle(),member.getHostUrl(),member.getLinkClass());
+                if(member.getKeyword()!=null)
+                {
+                    get_Ppom(member.getChatId(), member.getUrl(), member.getBaseurl(),member.getDateFommat(),member.getDocElement(),member.getNoticeClass(),member.getTitleClass(),member.getDateClass(),member.getTitle(),member.getHostUrl(),member.getLinkClass(),member.getKeyword());
+                }else
+                {
+                    get_Ppom(member.getChatId(), member.getUrl(), member.getBaseurl(),member.getDateFommat(),member.getDocElement(),member.getNoticeClass(),member.getTitleClass(),member.getDateClass(),member.getTitle(),member.getHostUrl(),member.getLinkClass(),null);
+                }
+
             }
 
         }
@@ -116,7 +123,7 @@ public class GetNotice{
         }
 
     }
-    private void get_Ppom(Long id,String url,String baseUrl,String dateFommat,String docElement,String noticeClass,String titleClass,String dateClass,String title,String hostUrl,String linkClass)
+    private void get_Ppom(Long id,String url,String baseUrl,String dateFommat,String docElement,String noticeClass,String titleClass,String dateClass,String title,String hostUrl,String linkClass,String keyword)
     {
         LocalDate current = LocalDate.now();
         LocalDateTime currentTime = LocalDateTime.now();
@@ -160,7 +167,15 @@ public class GetNotice{
                 String[] postTime = post.select(dateClass).text().split(":");
                 if(postTime[0].equals(timeNow[0])&&postTime[1].equals(timeNow[1]))
                 {
-                    telegramBot.sendMessage(id,title+" 게시판\nNo : "+posts.get(i).getNo()+"\n제목 : "+posts.get(i).getTitle()+"\n날짜 : "+posts.get(i).getDate()+"\n링크 : "+hostUrl+tess[1]);
+                    if(keyword != null) {
+                        if (posts.get(i).getTitle().contains(keyword))
+                            telegramBot.sendMessage(id, title + " 게시판\nNo : " + posts.get(i).getNo() + "\n제목 : " + posts.get(i).getTitle() + "\n날짜 : " + posts.get(i).getDate() + "\n링크 : " + hostUrl + tess[1]);
+                    }
+                    else{
+                        telegramBot.sendMessage(id, title + " 게시판\nNo : " + posts.get(i).getNo() + "\n제목 : " + posts.get(i).getTitle() + "\n날짜 : " + posts.get(i).getDate() + "\n링크 : " + hostUrl + tess[1]);
+                    }
+
+
                 }
 
                 i++;

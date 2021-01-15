@@ -24,7 +24,7 @@ public class DeuPostResDto {
     private String titleClass;
 
     private String dateClass;
-
+    private String keyword;
     private String title;
     private String linkClass;
     private String hostUrl;
@@ -47,5 +47,6 @@ public class DeuPostResDto {
         this.name = entity.getName();
         this.groupYN = entity.getGroupYN();
         this.linkClass=entity.getLinkClass();
+        this.keyword =entity.getKeyword();
     }
 }
